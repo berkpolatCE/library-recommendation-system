@@ -1,5 +1,6 @@
 import { Book, ReadingList, Review, Recommendation } from '@/types';
 import { mockBooks, mockReadingLists } from './mockData';
+import { fetchAuthSession } from 'aws-amplify/auth';
 
 /**
  * ============================================================================
@@ -43,32 +44,22 @@ import { mockBooks, mockReadingLists } from './mockData';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
 
 /**
- * TODO: Implement this function in Week 3, Day 4
- *
- * This function gets the JWT token from Cognito and adds it to API requests.
- *
- * Implementation:
- * 1. Import: import { fetchAuthSession } from 'aws-amplify/auth';
- * 2. Get session: const session = await fetchAuthSession();
- * 3. Extract token: const token = session.tokens?.idToken?.toString();
- * 4. Return headers with Authorization: Bearer {token}
- *
- * See IMPLEMENTATION_GUIDE.md - Week 3, Day 5-7 for complete code.
+ * Get authentication headers with JWT token from Cognito
  */
-// async function getAuthHeaders() {
-//   try {
-//     const session = await fetchAuthSession();
-//     const token = session.tokens?.idToken?.toString();
-//     return {
-//       'Authorization': `Bearer ${token}`,
-//       'Content-Type': 'application/json'
-//     };
-//   } catch {
-//     return {
-//       'Content-Type': 'application/json'
-//     };
-//   }
-// }
+async function getAuthHeaders() {
+  try {
+    const session = await fetchAuthSession();
+    const token = session.tokens?.idToken?.toString();
+    return {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    };
+  } catch {
+    return {
+      'Content-Type': 'application/json'
+    };
+  }
+}
 
 /**
  * Get all books from the catalog
@@ -257,7 +248,8 @@ export async function getRecommendations(): Promise<Recommendation[]> {
  * Expected response: Array of ReadingList objects for the authenticated user
  */
 export async function getReadingLists(): Promise<ReadingList[]> {
-  const response = await fetch(`${API_BASE_URL}/reading-lists?userId=1`);
+  const headers = await getAuthHeaders();
+  const response = await fetch(`${API_BASE_URL}/reading-lists`, { headers });
   if (!response.ok) throw new Error('Failed to fetch reading lists');
   return response.json();
 }
@@ -289,10 +281,11 @@ export async function getReadingLists(): Promise<ReadingList[]> {
 export async function createReadingList(
   list: Omit<ReadingList, 'id' | 'createdAt' | 'updatedAt'>
 ): Promise<ReadingList> {
+  const headers = await getAuthHeaders();
   const response = await fetch(`${API_BASE_URL}/reading-lists`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ ...list, userId: '1' })
+    headers,
+    body: JSON.stringify(list)
   });
   if (!response.ok) throw new Error('Failed to create reading list');
   return response.json();
@@ -306,10 +299,11 @@ export async function updateReadingList(
   id: string,
   list: Partial<ReadingList>
 ): Promise<ReadingList> {
+  const headers = await getAuthHeaders();
   const response = await fetch(`${API_BASE_URL}/reading-lists/${id}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ ...list, userId: '1' })
+    headers,
+    body: JSON.stringify(list)
   });
   if (!response.ok) throw new Error('Failed to update reading list');
   return response.json();
@@ -320,8 +314,10 @@ export async function updateReadingList(
  * TODO: Replace with DELETE /reading-lists/:id API call
  */
 export async function deleteReadingList(id: string): Promise<void> {
-  const response = await fetch(`${API_BASE_URL}/reading-lists/${id}?userId=1`, {
-    method: 'DELETE'
+  const headers = await getAuthHeaders();
+  const response = await fetch(`${API_BASE_URL}/reading-lists/${id}`, {
+    method: 'DELETE',
+    headers
   });
   if (!response.ok) throw new Error('Failed to delete reading list');
 }

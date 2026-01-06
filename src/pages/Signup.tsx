@@ -11,7 +11,8 @@ import { handleApiError } from '@/utils/errorHandling';
  */
 export function Signup() {
   const navigate = useNavigate();
-  const { signup } = useAuth();
+  const { signup, needsConfirmation, confirmAccount } = useAuth();
+  const [confirmationCode, setConfirmationCode] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -62,13 +63,63 @@ export function Signup() {
     setIsLoading(true);
     try {
       await signup(email, password, name);
-      navigate('/');
     } catch (error) {
       handleApiError(error);
     } finally {
       setIsLoading(false);
     }
   };
+
+  const handleConfirm = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      await confirmAccount(confirmationCode);
+      navigate('/login');
+    } catch (error) {
+      handleApiError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (needsConfirmation) {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-4 py-12 animated-bg">
+        <div className="max-w-md w-full">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-extrabold mb-3">
+              <span className="gradient-text">Check Your Email</span>
+            </h1>
+            <p className="text-slate-600 text-lg">We sent a verification code to your email</p>
+          </div>
+
+          <div className="glass-effect rounded-3xl shadow-2xl border border-white/20 p-8">
+            <form onSubmit={handleConfirm}>
+              <Input
+                label="Verification Code"
+                type="text"
+                value={confirmationCode}
+                onChange={(e) => setConfirmationCode(e.target.value)}
+                required
+                placeholder="Enter 6-digit code"
+              />
+
+              <Button
+                type="submit"
+                variant="primary"
+                size="lg"
+                className="w-full"
+                disabled={isLoading}
+              >
+                {isLoading ? 'Verifying...' : 'Verify Account'}
+              </Button>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12 animated-bg">
