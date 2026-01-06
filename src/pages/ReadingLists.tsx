@@ -9,7 +9,7 @@ import { formatDate } from '@/utils/formatters';
 import { handleApiError, showSuccess } from '@/utils/errorHandling';
 
 /**
- * ReadingLists page component
+ * ReadingLists page with warm Hogwarts styling
  */
 export function ReadingLists() {
   const [lists, setLists] = useState<ReadingList[]>([]);
@@ -72,8 +72,8 @@ export function ReadingLists() {
       <div className="container mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">My Reading Lists</h1>
-            <p className="text-slate-600 text-lg">Organize your books into custom lists</p>
+            <h1 className="text-4xl md:text-5xl font-serif font-bold text-ink mb-2">My Reading Lists</h1>
+            <p className="text-ink-light text-lg">Organize your books into custom lists</p>
           </div>
           <Button variant="primary" size="lg" onClick={() => setIsModalOpen(true)}>
             Create New List
@@ -81,9 +81,9 @@ export function ReadingLists() {
         </div>
 
         {lists.length === 0 ? (
-          <div className="text-center py-12 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-slate-200">
+          <div className="text-center py-12 glass-effect rounded-xl shadow-warm-lg border border-parchment-dark">
             <svg
-              className="w-16 h-16 text-slate-400 mx-auto mb-4"
+              className="w-16 h-16 text-ink-muted mx-auto mb-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -95,8 +95,8 @@ export function ReadingLists() {
                 d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
               />
             </svg>
-            <h3 className="text-xl font-bold text-slate-900 mb-2">No reading lists yet</h3>
-            <p className="text-slate-600 mb-4">
+            <h3 className="text-xl font-serif font-bold text-ink mb-2">No reading lists yet</h3>
+            <p className="text-ink-light mb-4">
               Create your first list to start organizing your books
             </p>
             <Button variant="primary" onClick={() => setIsModalOpen(true)}>
@@ -108,11 +108,11 @@ export function ReadingLists() {
             {lists.map((list) => (
               <div
                 key={list.id}
-                className="bg-white/90 backdrop-blur-sm rounded-xl shadow-sm border border-slate-200 p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300 cursor-pointer"
+                className="glass-effect rounded-xl shadow-warm-md border border-parchment-dark p-6 hover:shadow-warm-xl hover:border-gold/50 transition-all duration-300 cursor-pointer"
               >
-                <h3 className="text-xl font-bold text-slate-900 mb-2">{list.name}</h3>
-                <p className="text-slate-600 mb-4 line-clamp-2">{list.description}</p>
-                <div className="flex items-center justify-between text-sm text-slate-500">
+                <h3 className="text-xl font-serif font-bold text-ink mb-2">{list.name}</h3>
+                <p className="text-ink-light mb-4 line-clamp-2">{list.description}</p>
+                <div className="flex items-center justify-between text-sm text-ink-muted">
                   <span>{list.bookIds.length} books</span>
                   <span>Created {formatDate(list.createdAt)}</span>
                 </div>
@@ -137,12 +137,12 @@ export function ReadingLists() {
             />
 
             <div className="mb-4">
-              <label className="block text-sm font-medium text-slate-700 mb-1">Description</label>
+              <label className="block text-sm font-medium text-ink mb-1">Description</label>
               <textarea
                 value={newListDescription}
                 onChange={(e) => setNewListDescription(e.target.value)}
                 placeholder="What's this list about?"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[100px] resize-none"
+                className="input-modern min-h-[100px] resize-none"
               />
             </div>
 

@@ -7,7 +7,7 @@ import { Book, Recommendation } from '@/types';
 import { handleApiError } from '@/utils/errorHandling';
 
 /**
- * Recommendations page component with AI-powered suggestions
+ * Recommendations page with AI-powered suggestions
  */
 export function Recommendations() {
   const [query, setQuery] = useState('');
@@ -48,9 +48,9 @@ export function Recommendations() {
       <div className="container mx-auto max-w-4xl">
         <div className="mb-12 text-center">
           <div className="inline-block mb-4">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-violet-500/30 mx-auto">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-burgundy to-gold flex items-center justify-center shadow-lg shadow-burgundy/30 mx-auto">
               <svg
-                className="w-8 h-8 text-white"
+                className="w-8 h-8 text-parchment-light"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -64,16 +64,16 @@ export function Recommendations() {
               </svg>
             </div>
           </div>
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-4">
+          <h1 className="text-5xl md:text-6xl font-serif font-extrabold mb-4">
             <span className="gradient-text">AI-Powered Recommendations</span>
           </h1>
-          <p className="text-slate-600 text-xl max-w-2xl mx-auto">
+          <p className="text-ink-light text-xl max-w-2xl mx-auto">
             Tell us what you're looking for, and our AI will suggest the perfect books for you
           </p>
         </div>
 
-        <div className="glass-effect rounded-3xl shadow-2xl border border-white/20 p-8 mb-8">
-          <label className="block text-sm font-semibold text-slate-700 mb-3">
+        <div className="glass-effect rounded-3xl shadow-warm-2xl border border-parchment-dark p-8 mb-8">
+          <label className="block text-sm font-semibold text-ink mb-3">
             What kind of book are you looking for?
           </label>
           <textarea
@@ -84,13 +84,13 @@ export function Recommendations() {
           />
 
           <div className="mt-6">
-            <p className="text-sm text-slate-700 font-semibold mb-3">Try these examples:</p>
+            <p className="text-sm text-ink font-semibold mb-3">Try these examples:</p>
             <div className="flex flex-wrap gap-2">
               {exampleQueries.map((example, index) => (
                 <button
                   key={index}
                   onClick={() => setQuery(example)}
-                  className="text-sm bg-gradient-to-r from-violet-50 to-indigo-50 hover:from-violet-100 hover:to-indigo-100 text-slate-800 px-4 py-2 rounded-xl transition-all border border-violet-200 hover:border-violet-300 font-medium hover:shadow-md"
+                  className="text-sm bg-gradient-to-r from-parchment to-parchment-light hover:from-parchment-light hover:to-parchment text-ink px-4 py-2 rounded-xl transition-all border border-parchment-dark hover:border-gold font-medium hover:shadow-warm-md"
                 >
                   {example}
                 </button>
@@ -132,7 +132,7 @@ export function Recommendations() {
 
         {!isLoading && recommendations.length > 0 && (
           <div>
-            <h2 className="text-3xl font-bold mb-8">
+            <h2 className="text-3xl font-serif font-bold mb-8">
               <span className="gradient-text">Recommended for You</span>
             </h2>
 
@@ -145,24 +145,24 @@ export function Recommendations() {
                 return (
                   <div
                     key={rec.id}
-                    className="glass-effect rounded-2xl shadow-xl border border-white/20 p-6 hover-glow transition-all duration-300"
+                    className="glass-effect rounded-2xl shadow-warm-xl border border-parchment-dark p-6 hover-glow transition-all duration-300"
                   >
                     <div className="flex items-start gap-6">
                       <img
                         src={book.coverImage}
                         alt={book.title}
-                        className="w-28 h-40 object-cover rounded-xl shadow-lg"
+                        className="w-28 h-40 object-cover rounded-xl shadow-warm-lg"
                         onError={(e) => {
                           e.currentTarget.src = 'https://via.placeholder.com/112x160?text=No+Cover';
                         }}
                       />
                       <div className="flex-1">
-                        <h3 className="text-2xl font-bold text-slate-900 mb-2">{book.title}</h3>
-                        <p className="text-slate-600 mb-3 font-medium">by {book.author}</p>
-                        <p className="text-slate-700 mb-4 leading-relaxed">{rec.reason}</p>
+                        <h3 className="text-2xl font-serif font-bold text-ink mb-2">{book.title}</h3>
+                        <p className="text-ink-light mb-3 font-medium">by {book.author}</p>
+                        <p className="text-ink-light mb-4 leading-relaxed">{rec.reason}</p>
                         <div className="flex flex-wrap items-center gap-3">
-                          <div className="bg-gradient-to-r from-violet-100 to-indigo-100 px-3 py-1.5 rounded-xl border border-violet-200">
-                            <span className="text-sm text-violet-700 font-semibold">
+                          <div className="bg-gradient-to-r from-gold-pale to-parchment px-3 py-1.5 rounded-xl border border-gold/30">
+                            <span className="text-sm text-ink font-semibold">
                               Confidence: {Math.round(rec.confidence * 100)}%
                             </span>
                           </div>
@@ -181,7 +181,7 @@ export function Recommendations() {
 
         {!isLoading && recommendations.length === 0 && query && (
           <div className="text-center py-12">
-            <p className="text-slate-700 text-lg">
+            <p className="text-ink-light text-lg">
               No recommendations yet. Try describing what you're looking for!
             </p>
           </div>

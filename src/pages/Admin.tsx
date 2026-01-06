@@ -8,7 +8,7 @@ import { Book } from '@/types';
 import { handleApiError, showSuccess } from '@/utils/errorHandling';
 
 /**
- * Admin page component for managing books and viewing metrics
+ * Admin page with warm Hogwarts styling
  */
 export function Admin() {
   const [books, setBooks] = useState<Book[]>([]);
@@ -99,32 +99,32 @@ export function Admin() {
     <div className="min-h-screen py-8 px-4">
       <div className="container mx-auto">
         <div className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">Admin Dashboard</h1>
-          <p className="text-slate-600 text-lg">Manage books and view system metrics</p>
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-ink mb-2">Admin Dashboard</h1>
+          <p className="text-ink-light text-lg">Manage books and view system metrics</p>
         </div>
 
         {/* Metrics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-burgundy to-burgundy-dark rounded-xl shadow-warm-lg p-6 text-parchment-light">
             <h3 className="text-lg font-semibold mb-2 opacity-90">Total Books</h3>
-            <p className="text-5xl font-bold">{books.length}</p>
+            <p className="text-5xl font-serif font-bold">{books.length}</p>
           </div>
-          <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl shadow-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-gold to-gold-light rounded-xl shadow-warm-lg p-6 text-ink">
             <h3 className="text-lg font-semibold mb-2 opacity-90">Total Users</h3>
-            <p className="text-5xl font-bold">42</p>
+            <p className="text-5xl font-serif font-bold">42</p>
             <p className="text-sm mt-1 opacity-75">Placeholder data</p>
           </div>
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-deep-green to-forest-green rounded-xl shadow-warm-lg p-6 text-parchment-light">
             <h3 className="text-lg font-semibold mb-2 opacity-90">Active Reading Lists</h3>
-            <p className="text-5xl font-bold">18</p>
+            <p className="text-5xl font-serif font-bold">18</p>
             <p className="text-sm mt-1 opacity-75">Placeholder data</p>
           </div>
         </div>
 
         {/* Books Management */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-slate-200 p-6">
+        <div className="glass-effect rounded-xl shadow-warm-lg border border-parchment-dark p-6">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold text-slate-900">Manage Books</h2>
+            <h2 className="text-2xl font-serif font-bold text-ink">Manage Books</h2>
             <Button variant="primary" onClick={() => setIsModalOpen(true)}>
               Add New Book
             </Button>
@@ -133,21 +133,21 @@ export function Admin() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b">
-                  <th className="text-left py-3 px-4">Title</th>
-                  <th className="text-left py-3 px-4">Author</th>
-                  <th className="text-left py-3 px-4">Genre</th>
-                  <th className="text-left py-3 px-4">Rating</th>
-                  <th className="text-left py-3 px-4">Actions</th>
+                <tr className="border-b border-parchment-dark">
+                  <th className="text-left py-3 px-4 text-ink font-semibold">Title</th>
+                  <th className="text-left py-3 px-4 text-ink font-semibold">Author</th>
+                  <th className="text-left py-3 px-4 text-ink font-semibold">Genre</th>
+                  <th className="text-left py-3 px-4 text-ink font-semibold">Rating</th>
+                  <th className="text-left py-3 px-4 text-ink font-semibold">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {books.map((book) => (
-                  <tr key={book.id} className="border-b hover:bg-slate-50">
-                    <td className="py-3 px-4">{book.title}</td>
-                    <td className="py-3 px-4">{book.author}</td>
-                    <td className="py-3 px-4">{book.genre}</td>
-                    <td className="py-3 px-4">{book.rating}</td>
+                  <tr key={book.id} className="border-b border-parchment-dark hover:bg-parchment-light/50">
+                    <td className="py-3 px-4 text-ink">{book.title}</td>
+                    <td className="py-3 px-4 text-ink-light">{book.author}</td>
+                    <td className="py-3 px-4 text-ink-light">{book.genre}</td>
+                    <td className="py-3 px-4 text-ink-light">{book.rating}</td>
                     <td className="py-3 px-4">
                       <div className="flex gap-2">
                         <Button variant="secondary" size="sm">
@@ -197,11 +197,11 @@ export function Admin() {
             />
 
             <div className="mb-4">
-              <label className="block text-sm font-medium text-slate-700 mb-1">Description</label>
+              <label className="block text-sm font-medium text-ink mb-1">Description</label>
               <textarea
                 value={newBook.description}
                 onChange={(e) => setNewBook({ ...newBook, description: e.target.value })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 min-h-[100px] resize-none"
+                className="input-modern min-h-[100px] resize-none"
               />
             </div>
 

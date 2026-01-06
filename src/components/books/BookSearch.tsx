@@ -8,7 +8,7 @@ interface BookSearchProps {
 }
 
 /**
- * Modern BookSearch component with beautiful glass morphism
+ * BookSearch component with warm parchment styling
  *
  * @example
  * <BookSearch onSearch={handleSearch} />
@@ -22,7 +22,7 @@ export function BookSearch({ onSearch }: BookSearchProps) {
   };
 
   return (
-    <div className="glass-effect rounded-2xl p-6 border border-white/20 shadow-xl">
+    <div className="glass-effect rounded-2xl p-6 border border-parchment-dark shadow-warm-xl">
       <form onSubmit={handleSubmit} className="space-y-5">
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1">
@@ -35,7 +35,7 @@ export function BookSearch({ onSearch }: BookSearchProps) {
                 className="input-modern pl-12"
               />
               <svg
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-violet-400"
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gold"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -51,7 +51,7 @@ export function BookSearch({ onSearch }: BookSearchProps) {
           </div>
           <button
             type="submit"
-            className="btn-gradient px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5"
+            className="btn-gradient px-8 py-3 rounded-xl font-semibold shadow-warm-lg hover:shadow-warm-xl transition-all hover:-translate-y-0.5"
           >
             <svg
               className="w-5 h-5 inline mr-2"
@@ -73,7 +73,7 @@ export function BookSearch({ onSearch }: BookSearchProps) {
         {/* TODO: Implement filter logic */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-2">Genre</label>
+            <label className="block text-sm font-semibold text-ink mb-2">Genre</label>
             <select className="input-modern">
               <option value="">All Genres</option>
               <option value="fiction">Fiction</option>
@@ -85,7 +85,7 @@ export function BookSearch({ onSearch }: BookSearchProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-2">Rating</label>
+            <label className="block text-sm font-semibold text-ink mb-2">Rating</label>
             <select className="input-modern">
               <option value="">All Ratings</option>
               <option value="4.5">4.5+ Stars</option>
@@ -95,7 +95,7 @@ export function BookSearch({ onSearch }: BookSearchProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-2">Year</label>
+            <label className="block text-sm font-semibold text-ink mb-2">Year</label>
             <select className="input-modern">
               <option value="">All Years</option>
               <option value="2024">2024</option>

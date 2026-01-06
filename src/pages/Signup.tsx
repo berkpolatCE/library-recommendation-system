@@ -7,7 +7,7 @@ import { validateEmail, validatePassword, validateRequired } from '@/utils/valid
 import { handleApiError } from '@/utils/errorHandling';
 
 /**
- * Signup page component
+ * Signup page with warm Hogwarts styling
  */
 export function Signup() {
   const navigate = useNavigate();
@@ -88,13 +88,13 @@ export function Signup() {
       <div className="min-h-screen flex items-center justify-center px-4 py-12 animated-bg">
         <div className="max-w-md w-full">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-extrabold mb-3">
+            <h1 className="text-4xl font-serif font-extrabold mb-3">
               <span className="gradient-text">Check Your Email</span>
             </h1>
-            <p className="text-slate-600 text-lg">We sent a verification code to your email</p>
+            <p className="text-ink-light text-lg">We sent a verification code to your email</p>
           </div>
 
-          <div className="glass-effect rounded-3xl shadow-2xl border border-white/20 p-8">
+          <div className="glass-effect rounded-3xl shadow-warm-2xl border border-parchment-dark p-8">
             <form onSubmit={handleConfirm}>
               <Input
                 label="Verification Code"
@@ -126,9 +126,9 @@ export function Signup() {
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
           <div className="inline-block mb-4">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-violet-500/30 mx-auto">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-burgundy to-gold flex items-center justify-center shadow-lg shadow-burgundy/30 mx-auto">
               <svg
-                className="w-8 h-8 text-white"
+                className="w-8 h-8 text-parchment-light"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -142,13 +142,13 @@ export function Signup() {
               </svg>
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-3">
+          <h1 className="text-4xl md:text-5xl font-serif font-extrabold mb-3">
             <span className="gradient-text">Create Account</span>
           </h1>
-          <p className="text-slate-600 text-lg">Join us to discover your next favorite book</p>
+          <p className="text-ink-light text-lg">Join us to discover your next favorite book</p>
         </div>
 
-        <div className="glass-effect rounded-3xl shadow-2xl border border-white/20 p-8">
+        <div className="glass-effect rounded-3xl shadow-warm-2xl border border-parchment-dark p-8">
           <form onSubmit={handleSubmit}>
             <Input
               label="Full Name"
@@ -194,18 +194,18 @@ export function Signup() {
               <label className="flex items-start cursor-pointer group">
                 <input
                   type="checkbox"
-                  className="mt-1 mr-2 w-4 h-4 rounded border-slate-300 text-violet-600 focus:ring-violet-500"
+                  className="mt-1 mr-2 w-4 h-4 rounded border-parchment-dark text-burgundy focus:ring-burgundy"
                   required
                 />
-                <span className="text-sm text-slate-600 group-hover:text-slate-900">
+                <span className="text-sm text-ink-light group-hover:text-ink">
                   I agree to the{' '}
-                  <Link to="/terms" className="text-violet-600 hover:text-violet-700 font-semibold">
+                  <Link to="/terms" className="text-burgundy hover:text-burgundy-dark font-semibold">
                     Terms of Service
                   </Link>{' '}
                   and{' '}
                   <Link
                     to="/privacy"
-                    className="text-violet-600 hover:text-violet-700 font-semibold"
+                    className="text-burgundy hover:text-burgundy-dark font-semibold"
                   >
                     Privacy Policy
                   </Link>
@@ -225,9 +225,9 @@ export function Signup() {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-ink-light">
               Already have an account?{' '}
-              <Link to="/login" className="text-violet-600 hover:text-violet-700 font-semibold">
+              <Link to="/login" className="text-burgundy hover:text-burgundy-dark font-semibold">
                 Sign in
               </Link>
             </p>

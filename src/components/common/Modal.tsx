@@ -12,7 +12,7 @@ interface ModalProps {
 }
 
 /**
- * Reusable Modal component with backdrop and ESC key handler
+ * Reusable Modal component with warm parchment styling
  *
  * @example
  * <Modal isOpen={isOpen} onClose={handleClose} title="Add Book">
@@ -42,11 +42,11 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center animate-fade-in">
-      <div className="absolute inset-0 bg-black bg-opacity-50" onClick={onClose} />
-      <div className="relative bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6 animate-slide-up">
+      <div className="absolute inset-0 bg-ink/50 backdrop-blur-sm" onClick={onClose} />
+      <div className="relative bg-parchment-light rounded-2xl shadow-warm-xl border border-parchment-dark max-w-md w-full mx-4 p-6 animate-slide-up">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-slate-900">{title}</h2>
-          <button onClick={onClose} className="text-slate-400 hover:text-slate-600 transition-colors">
+          <h2 className="text-xl font-serif font-bold text-ink">{title}</h2>
+          <button onClick={onClose} className="text-ink-muted hover:text-burgundy transition-colors">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"

@@ -7,7 +7,7 @@ import { validateEmail, validateRequired } from '@/utils/validation';
 import { handleApiError } from '@/utils/errorHandling';
 
 /**
- * Login page component
+ * Login page with warm Hogwarts styling
  */
 export function Login() {
   const navigate = useNavigate();
@@ -57,9 +57,9 @@ export function Login() {
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
           <div className="inline-block mb-4">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-violet-500/30 mx-auto">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-burgundy to-gold flex items-center justify-center shadow-lg shadow-burgundy/30 mx-auto">
               <svg
-                className="w-8 h-8 text-white"
+                className="w-8 h-8 text-parchment-light"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -73,13 +73,13 @@ export function Login() {
               </svg>
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-3">
+          <h1 className="text-4xl md:text-5xl font-serif font-extrabold mb-3">
             <span className="gradient-text">Welcome Back</span>
           </h1>
-          <p className="text-slate-600 text-lg">Sign in to your account to continue</p>
+          <p className="text-ink-light text-lg">Sign in to your account to continue</p>
         </div>
 
-        <div className="glass-effect rounded-3xl shadow-2xl border border-white/20 p-8">
+        <div className="glass-effect rounded-3xl shadow-warm-2xl border border-parchment-dark p-8">
           <form onSubmit={handleSubmit}>
             <Input
               label="Email"
@@ -105,15 +105,15 @@ export function Login() {
               <label className="flex items-center cursor-pointer group">
                 <input
                   type="checkbox"
-                  className="mr-2 w-4 h-4 rounded border-slate-300 text-violet-600 focus:ring-violet-500"
+                  className="mr-2 w-4 h-4 rounded border-parchment-dark text-burgundy focus:ring-burgundy"
                 />
-                <span className="text-sm text-slate-600 group-hover:text-slate-900 font-medium">
+                <span className="text-sm text-ink-light group-hover:text-ink font-medium">
                   Remember me
                 </span>
               </label>
               <Link
                 to="/forgot-password"
-                className="text-sm text-violet-600 hover:text-violet-700 font-semibold"
+                className="text-sm text-burgundy hover:text-burgundy-dark font-semibold"
               >
                 Forgot password?
               </Link>
@@ -131,9 +131,9 @@ export function Login() {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-ink-light">
               Don't have an account?{' '}
-              <Link to="/signup" className="text-violet-600 hover:text-violet-700 font-semibold">
+              <Link to="/signup" className="text-burgundy hover:text-burgundy-dark font-semibold">
                 Sign up
               </Link>
             </p>

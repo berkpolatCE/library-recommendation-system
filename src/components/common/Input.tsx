@@ -9,7 +9,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 /**
- * Modern Input component with beautiful focus states
+ * Elegant Input component with warm Hogwarts styling
  *
  * @example
  * <Input
@@ -28,7 +28,7 @@ export function Input({ label, error, required, className = '', ...props }: Inpu
 
   return (
     <div className="mb-5">
-      <label className="block text-sm font-semibold text-slate-700 mb-2">
+      <label className="block text-sm font-semibold text-ink mb-2">
         {label}
         {required && <span className="text-rose-500 ml-1">*</span>}
       </label>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Navigation } from './Navigation';
 
 /**
- * Modern Header component with glass morphism effect
+ * Header component with warm Hogwarts-inspired styling
  *
  * Displays logo, navigation links, and user profile dropdown
  */
@@ -11,15 +11,15 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="glass-effect sticky top-0 z-50 border-b border-white/20 shadow-lg">
+    <header className="glass-effect sticky top-0 z-50 border-b border-parchment-dark shadow-warm-lg">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="relative">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-violet-500/30 group-hover:shadow-xl group-hover:shadow-violet-500/40 transition-all duration-300 group-hover:scale-110">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-burgundy to-gold flex items-center justify-center shadow-lg shadow-burgundy/30 group-hover:shadow-xl group-hover:shadow-gold/40 transition-all duration-300 group-hover:scale-110">
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-6 h-6 text-parchment-light"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -33,7 +33,7 @@ export function Header() {
                 </svg>
               </div>
             </div>
-            <span className="text-xl font-bold gradient-text">LibraryAI</span>
+            <span className="text-xl font-serif font-bold text-burgundy">LibraryAI</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -45,13 +45,13 @@ export function Header() {
           <div className="hidden md:flex items-center space-x-3">
             <Link
               to="/login"
-              className="text-slate-700 hover:text-violet-600 transition-colors font-semibold px-4 py-2 rounded-lg hover:bg-violet-50"
+              className="text-ink hover:text-burgundy transition-colors font-semibold px-4 py-2 rounded-lg hover:bg-parchment-light"
             >
               Login
             </Link>
             <Link
               to="/signup"
-              className="bg-gradient-to-r from-violet-600 to-indigo-600 text-white px-6 py-2.5 rounded-xl hover:from-violet-700 hover:to-indigo-700 transition-all shadow-lg shadow-violet-500/30 hover:shadow-xl hover:shadow-violet-500/40 font-semibold transform hover:-translate-y-0.5"
+              className="bg-gradient-to-r from-burgundy to-burgundy-dark text-parchment-light px-6 py-2.5 rounded-xl hover:from-burgundy-dark hover:to-burgundy transition-all shadow-lg shadow-burgundy/20 hover:shadow-xl hover:shadow-burgundy/30 font-semibold transform hover:-translate-y-0.5"
             >
               Sign Up
             </Link>
@@ -59,7 +59,7 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-slate-700 hover:text-violet-600 transition-colors p-2 rounded-lg hover:bg-violet-50"
+            className="md:hidden text-ink hover:text-burgundy transition-colors p-2 rounded-lg hover:bg-parchment-light"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,18 +84,18 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-white/20 animate-slide-in">
+          <div className="md:hidden py-4 border-t border-parchment-dark animate-slide-in">
             <Navigation mobile />
             <div className="mt-4 space-y-2">
               <Link
                 to="/login"
-                className="block text-slate-700 hover:text-violet-600 transition-colors py-2 px-4 rounded-lg hover:bg-violet-50 font-semibold"
+                className="block text-ink hover:text-burgundy transition-colors py-2 px-4 rounded-lg hover:bg-parchment-light font-semibold"
               >
                 Login
               </Link>
               <Link
                 to="/signup"
-                className="block bg-gradient-to-r from-violet-600 to-indigo-600 text-white px-4 py-2.5 rounded-xl hover:from-violet-700 hover:to-indigo-700 transition-all text-center font-semibold shadow-lg shadow-violet-500/30"
+                className="block bg-gradient-to-r from-burgundy to-burgundy-dark text-parchment-light px-4 py-2.5 rounded-xl hover:from-burgundy-dark hover:to-burgundy transition-all text-center font-semibold shadow-lg shadow-burgundy/20"
               >
                 Sign Up
               </Link>

@@ -1,26 +1,78 @@
 @import 'tailwindcss';
 
-/* Modern Design System */
+/* Hogwarts Magical Library Design System - Tailwind v4 Theme */
+@theme {
+  /* Colors - Burgundy (Primary) */
+  --color-burgundy: #722F37;
+  --color-burgundy-dark: #5C1E24;
+  --color-burgundy-light: #8B3D47;
+
+  /* Colors - Gold (Accent) */
+  --color-gold: #C9A227;
+  --color-gold-light: #D4B94E;
+  --color-gold-pale: #E8D48B;
+
+  /* Colors - Parchment (Backgrounds) */
+  --color-parchment: #F5E6D3;
+  --color-parchment-light: #FAF3EB;
+  --color-parchment-dark: #E8D4BE;
+
+  /* Colors - Warm Neutrals */
+  --color-cream: #FFFEF5;
+  --color-warm-white: #FDF9F3;
+
+  /* Colors - Dark Accents */
+  --color-navy: #1B365D;
+  --color-navy-light: #2C4A7C;
+  --color-deep-green: #1E5128;
+  --color-forest-green: #2D6A4F;
+  --color-bronze: #8B6914;
+
+  /* Colors - Ink (Text) */
+  --color-ink: #2C1810;
+  --color-ink-light: #4A3728;
+  --color-ink-muted: #6B5344;
+
+  /* Fonts */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+  --font-sans: 'Inter var', system-ui, sans-serif;
+
+  /* Shadows - Warm */
+  --shadow-warm-sm: 0 1px 2px 0 rgba(44, 24, 16, 0.05);
+  --shadow-warm-md: 0 4px 6px -1px rgba(44, 24, 16, 0.08), 0 2px 4px -2px rgba(44, 24, 16, 0.06);
+  --shadow-warm-lg: 0 10px 15px -3px rgba(44, 24, 16, 0.1), 0 4px 6px -4px rgba(44, 24, 16, 0.08);
+  --shadow-warm-xl: 0 20px 25px -5px rgba(44, 24, 16, 0.12), 0 8px 10px -6px rgba(44, 24, 16, 0.08);
+  --shadow-warm-2xl: 0 25px 50px -12px rgba(44, 24, 16, 0.2);
+  --shadow-glow-gold: 0 0 20px rgba(201, 162, 39, 0.3);
+  --shadow-glow-gold-lg: 0 0 40px rgba(201, 162, 39, 0.4);
+  --shadow-glow-burgundy: 0 0 20px rgba(114, 47, 55, 0.3);
+
+  /* Animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-gentle: float-gentle 8s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s infinite;
+  --animate-shimmer-slow: shimmer 3s infinite;
+  --animate-slide-in: slideIn 0.3s ease-out;
+  --animate-slide-up: slideUp 0.4s ease-out;
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
 @layer base {
   :root {
-    /* Color Palette */
-    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    --gradient-warm: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-    --gradient-cool: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
-
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-    --shadow-glow: 0 0 20px rgb(102 126 234 / 0.4);
+    /* CSS Variables for gradients (not themeable in Tailwind) */
+    --gradient-primary: linear-gradient(135deg, #722F37 0%, #5C1E24 100%);
+    --gradient-gold: linear-gradient(135deg, #C9A227 0%, #D4B94E 100%);
+    --gradient-hero: linear-gradient(135deg, #1B365D 0%, #2C1810 50%, #1E5128 100%);
+    --gradient-parchment: linear-gradient(180deg, #FFFEF5 0%, #FAF3EB 50%, #F5E6D3 100%);
   }
 
   body {
-    @apply bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 text-slate-900;
+    @apply bg-cream text-ink font-body;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(201, 162, 39, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(114, 47, 55, 0.03) 0%, transparent 50%);
     font-feature-settings:
       'rlig' 1,
       'calt' 1;
@@ -34,102 +86,121 @@
   h4,
   h5,
   h6 {
-    @apply text-slate-900 font-bold tracking-tight;
+    @apply text-ink font-serif font-bold tracking-tight;
   }
 }
 
 @layer components {
-  /* Glass Morphism Effect */
+  /* Glass Morphism Effect - Warm */
   .glass-effect {
-    @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-xl;
+    @apply bg-warm-white/90 backdrop-blur-xl border border-parchment-dark shadow-warm-lg;
   }
 
   .glass-dark {
-    @apply bg-slate-900/80 backdrop-blur-xl border border-white/10 shadow-2xl;
+    @apply bg-navy/90 backdrop-blur-xl border border-navy-light/30 shadow-2xl;
   }
 
-  /* Gradient Text */
+  /* Gradient Text - Hogwarts Style */
   .gradient-text {
-    @apply bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-burgundy via-burgundy-dark to-burgundy bg-clip-text text-transparent;
+  }
+
+  .gradient-text-gold {
+    @apply bg-gradient-to-r from-gold via-gold-light to-gold bg-clip-text text-transparent;
   }
 
   .gradient-text-warm {
-    @apply bg-gradient-to-r from-orange-500 via-pink-500 to-rose-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-gold via-gold-light to-parchment bg-clip-text text-transparent;
   }
 
   .gradient-text-cool {
-    @apply bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-navy via-navy-light to-deep-green bg-clip-text text-transparent;
   }
 
-  /* Card Styles */
+  /* Card Styles - Parchment */
   .card-modern {
-    @apply bg-white rounded-2xl shadow-lg border border-slate-200/50 p-6 transition-all duration-300;
-    @apply hover:shadow-2xl hover:border-violet-200 hover:-translate-y-1;
+    @apply bg-parchment rounded-2xl shadow-warm-lg border border-parchment-dark p-6 transition-all duration-300;
+    @apply hover:shadow-warm-xl hover:border-gold/30 hover:-translate-y-1;
   }
 
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
+    @apply transition-all duration-300 hover:shadow-warm-xl hover:-translate-y-2;
   }
 
   .card-gradient {
-    @apply bg-gradient-to-br from-white via-violet-50/30 to-indigo-50/30 rounded-2xl shadow-lg border border-violet-200/50 p-6;
+    @apply bg-gradient-to-br from-parchment-light via-parchment to-parchment-dark rounded-2xl shadow-warm-lg border border-parchment-dark p-6;
   }
 
-  /* Button Styles */
+  .card-parchment {
+    @apply bg-parchment rounded-xl shadow-warm-lg border border-parchment-dark p-6 transition-all duration-300;
+    @apply hover:shadow-warm-xl hover:border-gold/30 hover:-translate-y-1;
+  }
+
+  /* Button Styles - Burgundy & Gold */
   .btn-modern {
-    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg;
-    @apply hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
+    @apply px-6 py-3 rounded-xl font-sans font-semibold transition-all duration-300 shadow-warm-lg;
+    @apply hover:shadow-warm-xl hover:-translate-y-0.5 active:translate-y-0;
   }
 
   .btn-gradient {
-    @apply bg-gradient-to-r from-violet-600 to-indigo-600 text-white;
-    @apply hover:from-violet-700 hover:to-indigo-700;
+    @apply bg-gradient-to-r from-burgundy to-burgundy-dark text-parchment-light;
+    @apply hover:from-burgundy-dark hover:to-burgundy shadow-burgundy/20;
   }
 
   .btn-gradient-warm {
-    @apply bg-gradient-to-r from-orange-500 to-pink-500 text-white;
-    @apply hover:from-orange-600 hover:to-pink-600;
+    @apply bg-gradient-to-r from-gold to-gold-light text-ink;
+    @apply hover:from-gold-light hover:to-gold shadow-gold/30;
   }
 
-  /* Input Styles */
+  .btn-gradient-gold {
+    @apply bg-gradient-to-r from-gold to-gold-light text-ink;
+    @apply hover:from-gold-light hover:to-gold shadow-glow-gold;
+  }
+
+  /* Input Styles - Elegant */
   .input-modern {
-    @apply w-full px-4 py-3 rounded-xl border-2 border-slate-200 bg-white/50 backdrop-blur-sm;
-    @apply focus:outline-none focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10;
-    @apply transition-all duration-200;
+    @apply w-full px-4 py-3 rounded-xl border-2 border-parchment-dark bg-warm-white;
+    @apply focus:outline-none focus:border-burgundy focus:ring-4 focus:ring-burgundy/10;
+    @apply transition-all duration-200 text-ink placeholder-ink-muted;
   }
 
-  /* Badge Styles */
+  /* Badge Styles - Parchment & Gold */
   .badge-modern {
     @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
-    @apply bg-gradient-to-r from-violet-100 to-indigo-100 text-violet-700 border border-violet-200;
+    @apply bg-parchment text-ink border border-parchment-dark;
   }
 
   .badge-gradient {
-    @apply bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg;
+    @apply bg-gradient-to-r from-burgundy to-burgundy-dark text-parchment-light shadow-md;
   }
 
-  /* Section Styles */
+  .badge-gold {
+    @apply bg-gradient-to-r from-gold to-gold-light text-ink shadow-md;
+  }
+
+  /* Section Styles - Magical */
   .section-hero {
-    @apply relative overflow-hidden bg-gradient-to-br from-slate-900 via-violet-900 to-indigo-900;
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, #1B365D 0%, #2C1810 50%, #1E5128 100%);
   }
 
   .section-light {
-    @apply bg-gradient-to-br from-white via-violet-50/20 to-indigo-50/20;
+    background: linear-gradient(180deg, #FFFEF5 0%, #FAF3EB 50%, #F5E6D3 100%);
   }
 
-  /* Animated Background */
+  /* Animated Background - Warm Magical */
   .animated-bg {
     @apply relative overflow-hidden;
   }
 
   .animated-bg::before {
     content: '';
-    @apply absolute inset-0 opacity-30;
+    @apply absolute inset-0 opacity-20;
     background:
-      radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3), transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.3), transparent 50%),
-      radial-gradient(circle at 40% 20%, rgba(168, 85, 247, 0.3), transparent 50%);
-    animation: float 20s ease-in-out infinite;
+      radial-gradient(circle at 20% 50%, rgba(201, 162, 39, 0.2), transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(114, 47, 55, 0.2), transparent 50%),
+      radial-gradient(circle at 40% 20%, rgba(30, 81, 40, 0.15), transparent 50%);
+    animation: float 25s ease-in-out infinite;
   }
 
   @keyframes float {
@@ -138,14 +209,14 @@
       transform: translate(0, 0) scale(1);
     }
     33% {
-      transform: translate(30px, -30px) scale(1.1);
+      transform: translate(30px, -30px) scale(1.05);
     }
     66% {
-      transform: translate(-20px, 20px) scale(0.9);
+      transform: translate(-20px, 20px) scale(0.95);
     }
   }
 
-  /* Hover Glow Effect */
+  /* Hover Glow Effect - Golden */
   .hover-glow {
     @apply relative transition-all duration-300;
   }
@@ -153,8 +224,8 @@
   .hover-glow::after {
     content: '';
     @apply absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300;
-    background: radial-gradient(circle at center, rgba(139, 92, 246, 0.3), transparent 70%);
-    filter: blur(20px);
+    background: radial-gradient(circle at center, rgba(201, 162, 39, 0.15), transparent 70%);
+    filter: blur(15px);
     z-index: -1;
   }
 
@@ -182,9 +253,9 @@
     }
   }
 
-  /* Floating Elements */
+  /* Floating Elements - Gentle */
   .float {
-    animation: float-gentle 6s ease-in-out infinite;
+    animation: float-gentle 8s ease-in-out infinite;
   }
 
   @keyframes float-gentle {
@@ -193,11 +264,11 @@
       transform: translateY(0px);
     }
     50% {
-      transform: translateY(-20px);
+      transform: translateY(-10px);
     }
   }
 
-  /* Shimmer Effect */
+  /* Shimmer Effect - Golden */
   .shimmer {
     @apply relative overflow-hidden;
   }
@@ -205,8 +276,8 @@
   .shimmer::after {
     content: '';
     @apply absolute inset-0;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    animation: shimmer 2s infinite;
+    background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.15), transparent);
+    animation: shimmer 3s infinite;
   }
 
   @keyframes shimmer {
@@ -216,5 +287,11 @@
     100% {
       transform: translateX(100%);
     }
+  }
+
+  /* Elegant Border Effect */
+  .border-elegant {
+    @apply border border-parchment-dark;
+    box-shadow: inset 0 0 0 1px rgba(201, 162, 39, 0.1);
   }
 }

@@ -8,7 +8,7 @@ interface NavigationProps {
 }
 
 /**
- * Modern Navigation component with gradient active states
+ * Navigation component with golden active states
  *
  * Displays navigation links for all main routes
  * Responsive: horizontal on desktop, vertical on mobile
@@ -24,13 +24,13 @@ export function Navigation({ mobile = false }: NavigationProps) {
 
   const baseClasses = 'transition-all duration-300 font-semibold';
   const activeClasses = mobile
-    ? 'text-violet-600 bg-violet-50 border-l-4 border-violet-600'
-    : 'text-violet-600 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-gradient-to-r after:from-violet-600 after:to-indigo-600';
-  const inactiveClasses = 'text-slate-700 hover:text-violet-600';
+    ? 'text-burgundy bg-parchment-light border-l-4 border-gold'
+    : 'text-burgundy relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-gradient-to-r after:from-gold after:to-gold-light';
+  const inactiveClasses = 'text-ink hover:text-burgundy';
 
   const containerClasses = mobile ? 'flex flex-col space-y-2' : 'flex space-x-8';
 
-  const linkClasses = mobile ? 'py-2.5 px-4 rounded-lg hover:bg-violet-50' : 'pb-1';
+  const linkClasses = mobile ? 'py-2.5 px-4 rounded-lg hover:bg-parchment-light' : 'pb-1';
 
   return (
     <nav className={containerClasses}>

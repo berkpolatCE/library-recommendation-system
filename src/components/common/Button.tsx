@@ -10,7 +10,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 /**
- * Modern Button component with beautiful gradients and animations
+ * Modern Button component with Hogwarts-inspired styling
  *
  * @example
  * <Button variant="primary" size="md" onClick={handleClick}>
@@ -26,19 +26,19 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseClasses =
-    'rounded-xl font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-4';
+    'rounded-xl font-sans font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-4';
 
   const variantClasses = {
     primary:
-      'bg-gradient-to-r from-violet-600 to-indigo-600 text-white hover:from-violet-700 hover:to-indigo-700 shadow-lg shadow-violet-500/30 hover:shadow-xl hover:shadow-violet-500/40 focus:ring-violet-500/20',
+      'bg-gradient-to-r from-burgundy to-burgundy-dark text-parchment-light hover:from-burgundy-dark hover:to-burgundy shadow-lg shadow-burgundy/20 hover:shadow-xl hover:shadow-burgundy/30 focus:ring-burgundy/20',
     secondary:
-      'bg-white text-slate-700 hover:bg-slate-50 shadow-md hover:shadow-lg border-2 border-slate-200 hover:border-violet-300 focus:ring-violet-500/20',
+      'bg-warm-white text-ink hover:bg-parchment-light shadow-warm-md hover:shadow-warm-lg border-2 border-parchment-dark hover:border-gold focus:ring-gold/20',
     danger:
-      'bg-gradient-to-r from-rose-600 to-pink-600 text-white hover:from-rose-700 hover:to-pink-700 shadow-lg shadow-rose-500/30 hover:shadow-xl hover:shadow-rose-500/40 focus:ring-rose-500/20',
+      'bg-gradient-to-r from-rose-600 to-rose-700 text-white hover:from-rose-700 hover:to-rose-800 shadow-lg shadow-rose-500/30 hover:shadow-xl hover:shadow-rose-500/40 focus:ring-rose-500/20',
     gradient:
-      'bg-gradient-to-r from-orange-500 via-pink-500 to-rose-500 text-white hover:from-orange-600 hover:via-pink-600 hover:to-rose-600 shadow-lg shadow-pink-500/30 hover:shadow-xl hover:shadow-pink-500/40 focus:ring-pink-500/20',
+      'bg-gradient-to-r from-gold to-gold-light text-ink hover:from-gold-light hover:to-gold shadow-lg shadow-gold/30 hover:shadow-xl hover:shadow-gold/40 focus:ring-gold/20',
     outline:
-      'bg-transparent text-violet-600 hover:bg-violet-50 border-2 border-violet-600 hover:border-violet-700 focus:ring-violet-500/20',
+      'bg-transparent text-burgundy hover:bg-parchment-light border-2 border-burgundy hover:border-burgundy-dark focus:ring-burgundy/20',
   };
 
   const sizeClasses = {

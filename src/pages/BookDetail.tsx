@@ -61,7 +61,7 @@ export function BookDetail() {
       <div className="container mx-auto max-w-6xl">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center text-slate-600 hover:text-violet-600 mb-8 transition-colors group glass-effect px-4 py-2 rounded-xl border border-white/20 w-fit"
+          className="flex items-center text-ink-light hover:text-burgundy mb-8 transition-colors group glass-effect px-4 py-2 rounded-xl border border-parchment-dark w-fit"
         >
           <svg
             className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform"
@@ -79,30 +79,30 @@ export function BookDetail() {
           <span className="font-semibold">Back</span>
         </button>
 
-        <div className="glass-effect rounded-3xl shadow-2xl border border-white/20 overflow-hidden">
+        <div className="glass-effect rounded-3xl shadow-warm-2xl border border-parchment-dark overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-8 md:p-12">
             <div className="md:col-span-1">
               <div className="relative group">
                 <img
                   src={book.coverImage}
                   alt={book.title}
-                  className="w-full rounded-2xl shadow-2xl group-hover:shadow-glow transition-all duration-300"
+                  className="w-full rounded-2xl shadow-warm-2xl group-hover:shadow-glow-gold transition-all duration-300"
                   onError={(e) => {
                     e.currentTarget.src = 'https://via.placeholder.com/300x400?text=No+Cover';
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-violet-900/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-burgundy/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
             </div>
 
             <div className="md:col-span-2">
-              <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-3 leading-tight">
+              <h1 className="text-4xl md:text-5xl font-serif font-extrabold text-ink mb-3 leading-tight">
                 {book.title}
               </h1>
-              <p className="text-xl text-slate-600 mb-6 font-medium">by {book.author}</p>
+              <p className="text-xl text-ink-light mb-6 font-medium">by {book.author}</p>
 
               <div className="flex flex-wrap items-center gap-4 mb-8">
-                <div className="flex items-center bg-gradient-to-r from-amber-50 to-orange-50 px-4 py-2 rounded-xl border border-amber-200 shadow-sm">
+                <div className="flex items-center bg-gradient-to-r from-gold-pale to-parchment px-4 py-2 rounded-xl border border-gold/30 shadow-sm">
                   <svg
                     className="w-5 h-5 text-amber-500 mr-2"
                     fill="currentColor"
@@ -117,7 +117,7 @@ export function BookDetail() {
 
                 <span className="badge-gradient px-4 py-2 text-sm">{book.genre}</span>
 
-                <div className="flex items-center text-slate-600 bg-slate-50 px-4 py-2 rounded-xl border border-slate-200">
+                <div className="flex items-center text-ink-light bg-parchment-light px-4 py-2 rounded-xl border border-parchment-dark">
                   <svg
                     className="w-5 h-5 mr-2"
                     fill="none"
@@ -136,15 +136,15 @@ export function BookDetail() {
               </div>
 
               <div className="mb-8">
-                <h2 className="text-2xl font-bold text-slate-900 mb-4 flex items-center">
-                  <span className="w-1 h-6 bg-gradient-to-b from-violet-600 to-indigo-600 rounded-full mr-3"></span>
+                <h2 className="text-2xl font-serif font-bold text-ink mb-4 flex items-center">
+                  <span className="w-1 h-6 bg-gradient-to-b from-burgundy to-burgundy-dark rounded-full mr-3"></span>
                   Description
                 </h2>
-                <p className="text-slate-700 leading-relaxed text-lg">{book.description}</p>
+                <p className="text-ink-light leading-relaxed text-lg">{book.description}</p>
               </div>
 
-              <div className="mb-8 glass-effect p-4 rounded-xl border border-white/20">
-                <p className="text-sm text-slate-600">
+              <div className="mb-8 glass-effect p-4 rounded-xl border border-parchment-dark">
+                <p className="text-sm text-ink-light">
                   <span className="font-semibold">ISBN:</span> {book.isbn}
                 </p>
               </div>
@@ -188,15 +188,15 @@ export function BookDetail() {
         </div>
 
         {/* TODO: Implement reviews section */}
-        <div className="mt-8 glass-effect rounded-3xl shadow-xl border border-white/20 p-8 md:p-12">
-          <h2 className="text-3xl font-bold text-slate-900 mb-6 flex items-center">
-            <span className="w-1 h-8 bg-gradient-to-b from-violet-600 to-indigo-600 rounded-full mr-3"></span>
+        <div className="mt-8 glass-effect rounded-3xl shadow-warm-xl border border-parchment-dark p-8 md:p-12">
+          <h2 className="text-3xl font-serif font-bold text-ink mb-6 flex items-center">
+            <span className="w-1 h-8 bg-gradient-to-b from-burgundy to-burgundy-dark rounded-full mr-3"></span>
             Reviews
           </h2>
           <div className="text-center py-12">
-            <div className="w-16 h-16 bg-gradient-to-br from-violet-100 to-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-gradient-to-br from-parchment to-parchment-dark rounded-2xl flex items-center justify-center mx-auto mb-4">
               <svg
-                className="w-8 h-8 text-violet-600"
+                className="w-8 h-8 text-burgundy"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -209,7 +209,7 @@ export function BookDetail() {
                 />
               </svg>
             </div>
-            <p className="text-slate-600 text-lg">Reviews section coming soon...</p>
+            <p className="text-ink-light text-lg">Reviews section coming soon...</p>
           </div>
         </div>
       </div>
