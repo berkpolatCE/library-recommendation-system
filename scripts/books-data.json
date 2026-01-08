@@ -155,9 +155,9 @@
         "Item": {
           "id": {"S": "11"},
           "title": {"S": "Nutuk"},
-          "author": {"S": "Mustafa Kemal Atatürk"},
+          "author": {"S": "Mustafa Kemal Ataturk"},
           "genre": {"S": "Non-Fiction"},
-          "description": {"S": "The Great Speech delivered by Atatürk over six days in 1927, documenting the Turkish War of Independence and the founding of the Republic of Turkey."},
+          "description": {"S": "The Great Speech delivered by Ataturk over six days in 1927, documenting the Turkish War of Independence and the founding of the Republic of Turkey."},
           "coverImage": {"S": "/book-covers/nutuk.jpg"},
           "rating": {"N": "4.9"},
           "publishedYear": {"N": "1927"},
