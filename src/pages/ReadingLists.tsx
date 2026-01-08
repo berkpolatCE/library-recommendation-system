@@ -3,7 +3,7 @@ import { Button } from '@/components/common/Button';
 import { Modal } from '@/components/common/Modal';
 import { Input } from '@/components/common/Input';
 import { LoadingSpinner } from '@/components/common/LoadingSpinner';
-import { getReadingLists, createReadingList } from '@/services/api';
+import { getReadingLists, createReadingList, deleteReadingList } from '@/services/api';
 import { ReadingList } from '@/types';
 import { formatDate } from '@/utils/formatters';
 import { handleApiError, showSuccess } from '@/utils/errorHandling';
@@ -17,6 +17,8 @@ export function ReadingLists() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newListName, setNewListName] = useState('');
   const [newListDescription, setNewListDescription] = useState('');
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [listToDelete, setListToDelete] = useState<ReadingList | null>(null);
 
   useEffect(() => {
     loadLists();
@@ -56,6 +58,26 @@ export function ReadingLists() {
       showSuccess('Reading list created successfully!');
     } catch (error) {
       handleApiError(error);
+    }
+  };
+
+  const handleDeleteClick = (e: React.MouseEvent, list: ReadingList) => {
+    e.stopPropagation();
+    setListToDelete(list);
+    setDeleteModalOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!listToDelete) return;
+    try {
+      await deleteReadingList(listToDelete.id);
+      setLists(lists.filter((l) => l.id !== listToDelete.id));
+      showSuccess('Reading list deleted successfully!');
+    } catch (error) {
+      handleApiError(error);
+    } finally {
+      setDeleteModalOpen(false);
+      setListToDelete(null);
     }
   };
 
@@ -108,9 +130,23 @@ export function ReadingLists() {
             {lists.map((list) => (
               <div
                 key={list.id}
-                className="glass-effect rounded-xl shadow-warm-md border border-parchment-dark p-6 hover:shadow-warm-xl hover:border-gold/50 transition-all duration-300 cursor-pointer"
+                className="relative glass-effect rounded-xl shadow-warm-md border border-parchment-dark p-6 hover:shadow-warm-xl hover:border-gold/50 transition-all duration-300 cursor-pointer"
               >
-                <h3 className="text-xl font-serif font-bold text-ink mb-2">{list.name}</h3>
+                <button
+                  onClick={(e) => handleDeleteClick(e, list)}
+                  className="absolute top-4 right-4 p-2 text-ink-muted hover:text-rose-600 transition-colors"
+                  title="Delete list"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                    />
+                  </svg>
+                </button>
+                <h3 className="text-xl font-serif font-bold text-ink mb-2 pr-10">{list.name}</h3>
                 <p className="text-ink-light mb-4 line-clamp-2">{list.description}</p>
                 <div className="flex items-center justify-between text-sm text-ink-muted">
                   <span>{list.bookIds.length} books</span>
@@ -151,6 +187,26 @@ export function ReadingLists() {
                 Create List
               </Button>
               <Button variant="secondary" onClick={() => setIsModalOpen(false)} className="flex-1">
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </Modal>
+
+        <Modal
+          isOpen={deleteModalOpen}
+          onClose={() => setDeleteModalOpen(false)}
+          title="Delete Reading List"
+        >
+          <div>
+            <p className="text-ink-light mb-6">
+              Are you sure you want to delete "{listToDelete?.name}"? This action cannot be undone.
+            </p>
+            <div className="flex gap-3">
+              <Button variant="danger" onClick={handleConfirmDelete} className="flex-1">
+                Delete
+              </Button>
+              <Button variant="secondary" onClick={() => setDeleteModalOpen(false)} className="flex-1">
                 Cancel
               </Button>
             </div>
