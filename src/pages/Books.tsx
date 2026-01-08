@@ -14,6 +14,8 @@ export function Books() {
   const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [sortBy, setSortBy] = useState('title');
+  const [selectedGenre, setSelectedGenre] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     loadBooks();
@@ -32,20 +34,36 @@ export function Books() {
     }
   };
 
-  const handleSearch = (query: string) => {
-    if (!query.trim()) {
-      setFilteredBooks(books);
-      return;
+  const applyFilters = (query: string, genre: string) => {
+    let filtered = books;
+
+    // Text search
+    if (query.trim()) {
+      const lowercaseQuery = query.toLowerCase();
+      filtered = filtered.filter(
+        (book) =>
+          book.title.toLowerCase().includes(lowercaseQuery) ||
+          book.author.toLowerCase().includes(lowercaseQuery) ||
+          book.genre.toLowerCase().includes(lowercaseQuery)
+      );
     }
 
-    const lowercaseQuery = query.toLowerCase();
-    const filtered = books.filter(
-      (book) =>
-        book.title.toLowerCase().includes(lowercaseQuery) ||
-        book.author.toLowerCase().includes(lowercaseQuery) ||
-        book.genre.toLowerCase().includes(lowercaseQuery)
-    );
+    // Genre filter
+    if (genre !== 'all') {
+      filtered = filtered.filter((book) => book.genre === genre);
+    }
+
     setFilteredBooks(filtered);
+  };
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    applyFilters(query, selectedGenre);
+  };
+
+  const handleGenreChange = (genre: string) => {
+    setSelectedGenre(genre);
+    applyFilters(searchQuery, genre);
   };
 
   // TODO: Implement sort functionality
@@ -78,7 +96,11 @@ export function Books() {
 
         {/* Search */}
         <div className="mb-8">
-          <BookSearch onSearch={handleSearch} />
+          <BookSearch
+            onSearch={handleSearch}
+            selectedGenre={selectedGenre}
+            onGenreChange={handleGenreChange}
+          />
         </div>
 
         {/* Filters & Sort */}

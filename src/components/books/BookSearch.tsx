@@ -5,6 +5,8 @@ import React, { useState } from 'react';
  */
 interface BookSearchProps {
   onSearch: (query: string) => void;
+  selectedGenre: string;
+  onGenreChange: (genre: string) => void;
 }
 
 /**
@@ -13,7 +15,7 @@ interface BookSearchProps {
  * @example
  * <BookSearch onSearch={handleSearch} />
  */
-export function BookSearch({ onSearch }: BookSearchProps) {
+export function BookSearch({ onSearch, selectedGenre, onGenreChange }: BookSearchProps) {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -70,17 +72,20 @@ export function BookSearch({ onSearch }: BookSearchProps) {
           </button>
         </div>
 
-        {/* TODO: Implement filter logic */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label className="block text-sm font-semibold text-ink mb-2">Genre</label>
-            <select className="input-modern">
-              <option value="">All Genres</option>
-              <option value="fiction">Fiction</option>
-              <option value="sci-fi">Science Fiction</option>
-              <option value="mystery">Mystery</option>
-              <option value="romance">Romance</option>
-              <option value="non-fiction">Non-Fiction</option>
+            <select
+              className="input-modern"
+              value={selectedGenre}
+              onChange={(e) => onGenreChange(e.target.value)}
+            >
+              <option value="all">All Genres</option>
+              <option value="Fiction">Fiction</option>
+              <option value="Science Fiction">Science Fiction</option>
+              <option value="Mystery">Mystery</option>
+              <option value="Romance">Romance</option>
+              <option value="Non-Fiction">Non-Fiction</option>
             </select>
           </div>
 
